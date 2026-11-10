@@ -1,9 +1,9 @@
 import { createFileRoute } from "@tanstack/react-router";
-import { createElement, useEffect, useRef, useState } from "react";
-import { ChevronRight, Play, Trophy, Layers, Home, Star, MapPin, Phone } from "lucide-react";
+import { ChevronRight, Trophy, Layers, Home, Star, MapPin, Phone } from "lucide-react";
 import { Accordion, AccordionContent, AccordionItem, AccordionTrigger } from "@/components/ui/accordion";
 import { LeadForm } from "@/components/landing/LeadForm";
 import { StoriesCarousel } from "@/components/landing/StoriesCarousel";
+import { WistiaVideo } from "@/components/landing/WistiaVideo";
 import { StayOrMoveSection } from "@/components/landing/StayOrMoveSection";
 import logoDarkAsset from "@/assets/joseph-aziz-logo-dark.png";
 import logoLightAsset from "@/assets/joseph-aziz-logo-light.png";
@@ -26,7 +26,11 @@ export const Route = createFileRoute("/")({
     ],
     scripts: [
       { src: "https://fast.wistia.com/player.js", async: true },
-      { src: "https://fast.wistia.com/embed/m0m8e6gfb6.js", async: true, type: "module" },
+      ...["m0m8e6gfb6", "26kunyl0qb", "s0jsdzilad", "s0cb5zf8yx"].map((id) => ({
+        src: `https://fast.wistia.com/embed/${id}.js`,
+        async: true,
+        type: "module",
+      })),
     ],
   }),
   component: Index,
@@ -78,71 +82,6 @@ function Eyebrow({ children }: { children: string }) {
   );
 }
 
-type WistiaPlayerElement = HTMLElement & {
-  play: () => Promise<void> | void;
-};
-
-function HeroVideo() {
-  const playerRef = useRef<WistiaPlayerElement | null>(null);
-  const [showResume, setShowResume] = useState(false);
-
-  useEffect(() => {
-    const player = playerRef.current;
-    if (!player) return;
-
-    const onPause = () => setShowResume(true);
-    const onPlay = () => setShowResume(false);
-    const onEnded = () => setShowResume(false);
-
-    player.addEventListener("pause", onPause);
-    player.addEventListener("play", onPlay);
-    player.addEventListener("ended", onEnded);
-    return () => {
-      player.removeEventListener("pause", onPause);
-      player.removeEventListener("play", onPlay);
-      player.removeEventListener("ended", onEnded);
-    };
-  }, []);
-
-  function resumeVideo() {
-    const player = playerRef.current;
-    if (!player) return;
-
-    try {
-      // Call play during the click gesture, without reloading or delaying the player.
-      const playback = player.play();
-      setShowResume(false);
-      void Promise.resolve(playback).catch(() => setShowResume(true));
-    } catch {
-      setShowResume(true);
-    }
-  }
-
-  return (
-    <div className="hero-video media-frame relative mx-auto mt-6 aspect-video w-full max-w-3xl overflow-hidden rounded-2xl bg-black shadow-2xl sm:mt-8">
-      {createElement("wistia-player", {
-        ref: playerRef,
-        "media-id": "m0m8e6gfb6",
-        aspect: "1.7777777777777777",
-        "player-color": "#191919",
-        "fullscreen-control": "false",
-        "play-pause-notifier": "false",
-        "aria-label": "Joseph Aziz Stay-or-Move evaluation video",
-      })}
-      {showResume && (
-        <button
-          type="button"
-          className="hero-video-resume"
-          aria-label="Resume video"
-          onClick={resumeVideo}
-        >
-          <Play aria-hidden="true" />
-        </button>
-      )}
-    </div>
-  );
-}
-
 function Index() {
   return (
     <main className="relative overflow-x-hidden text-foreground">
@@ -161,7 +100,12 @@ function Index() {
             <span className="hero-highlight headline-mark text-white shadow-md">Move</span>{" "}
             Into <em className="hero-outcome text-primary">the Home You Actually Want.</em>
           </h1>
-          <HeroVideo />
+          <WistiaVideo
+            mediaId="m0m8e6gfb6"
+            aspect="1.7777777777777777"
+            label="Joseph Aziz Stay-or-Move evaluation video"
+            className="media-frame mx-auto mt-6 max-w-3xl overflow-hidden rounded-2xl bg-black shadow-2xl sm:mt-8"
+          />
           <p className="landing-copy mx-auto mt-5 max-w-[46ch] text-lg text-foreground sm:mt-6 sm:max-w-3xl sm:text-xl font-normal leading-relaxed">
             Joseph Aziz’s Stay-or-Move Evaluation compares what your home could sell for today, what it could be worth after the work, and what you could buy instead, including the costs of selling and moving.
           </p>

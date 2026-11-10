@@ -377,7 +377,7 @@
   mask-repeat: no-repeat;
 }
 
-.hero-video wistia-player {
+.wistia-video wistia-player {
   position: absolute;
   inset: 0;
   display: block;
@@ -385,12 +385,18 @@
   height: 100%;
 }
 
-.hero-video wistia-player:not(:defined) {
-  background: center / contain no-repeat url("https://fast.wistia.com/embed/medias/m0m8e6gfb6/swatch");
+.wistia-video wistia-player:defined {
+  background-image: none !important;
+}
+
+.wistia-video wistia-player:not(:defined) {
+  background-position: center;
+  background-size: contain;
+  background-repeat: no-repeat;
   filter: blur(5px);
 }
 
-.hero-video-resume {
+.video-resume {
   position: absolute;
   z-index: 2;
   inset: 0;
@@ -407,14 +413,14 @@
   cursor: pointer;
 }
 
-.hero-video-resume svg {
+.video-resume svg {
   width: 22px;
   height: 22px;
   margin-left: 3px;
   fill: currentColor;
 }
 
-.hero-video-resume:focus-visible {
+.video-resume:focus-visible {
   outline: 2px solid white;
   outline-offset: 4px;
 }
