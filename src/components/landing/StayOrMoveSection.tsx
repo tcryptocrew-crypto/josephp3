@@ -54,26 +54,26 @@ export function StayOrMoveSection() {
       <div className={styles.content}>
         <header className={styles.intro}>
           <div className={styles.labelRow} data-decision-reveal>
-            <span className={styles.label}>Sell to Buy</span>
+            <span className={styles.label}>Stay or Move</span>
           </div>
           <h2 id="stay-or-move-title" className={styles.title} data-decision-reveal>
-            A Great Offer on Your House Doesn’t Answer <em>Where You’ll Live Next.</em>
+            A Bigger Version of Your House May Still Be <em>the Wrong House.</em>
           </h2>
           <p className={styles.supporting} data-decision-reveal>
-            You want the extra bedroom, the better layout, or the home you no longer need to renovate.
-            But the money for that purchase may be tied up in the house you own.
+            Another bedroom could solve the space problem. But what about the layout, the location,
+            or the things you would still want to change?
           </p>
         </header>
 
         <p className={styles.reflection} data-decision-reveal>
-          Plan before you list:
+          Before committing to construction, ask yourself:
         </p>
         <div className={styles.question} data-decision-reveal>
           <div className={styles.questionIcon} aria-hidden="true">
             <HousePlus strokeWidth={1.2} />
           </div>
           <p>
-            Your sale price, next purchase, and closing dates need to work together. <em>Plan them before you list.</em>
+            When the work is finished, <em>will this be the home I want to stay in?</em>
           </p>
         </div>
 
@@ -93,10 +93,11 @@ export function StayOrMoveSection() {
               />
             </div>
             <div className={styles.pathCopy}>
-              <span className={styles.pathLabel}>Selling First?</span>
-              <h3 id="stay-build-title">Pressure to Settle</h3>
+              <span className={styles.pathLabel}>Staying?</span>
+              <h3 id="stay-build-title">Build an Addition</h3>
               <p>
-                Sell before you know your options, and you could feel pressured to settle.
+                If you love your location and an addition gives you what you need, staying deserves
+                a serious look.
               </p>
             </div>
           </article>
@@ -115,17 +116,17 @@ export function StayOrMoveSection() {
               />
             </div>
             <div className={styles.pathCopy}>
-              <span className={styles.pathLabel}>Buying First?</span>
-              <h3 id="move-up-title">Unconfirmed Proceeds</h3>
+              <span className={styles.pathLabel}>Moving?</span>
+              <h3 id="move-up-title">Buy Another Home</h3>
               <p>
-                Commit to buying before checking the numbers, and you could be relying on sale proceeds you haven’t confirmed.
+                But before you commit, you should also know what your current home could help you buy.
               </p>
             </div>
           </article>
         </div>
 
         <div className={styles.closing} data-decision-reveal>
-          <p>Your sale price, next purchase, and closing dates need to work together. Plan them before you list.</p>
+          <p>Compare both paths before you start paying for one.</p>
         </div>
       </div>
     </section>
