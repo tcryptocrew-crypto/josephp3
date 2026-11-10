@@ -9,7 +9,7 @@ import {
 type Errors = Partial<Record<keyof EvaluationLead, string>>;
 
 const field =
-  "w-full rounded-md border border-border bg-background/60 px-4 py-3 text-base text-foreground placeholder:text-muted-foreground/70 outline-none transition focus:border-primary focus:shadow-[var(--glow-soft)]";
+  "w-full rounded-md border border-[#E2D7C8] bg-white px-4 py-3 text-base text-[#3D3335] placeholder:text-[#8F8585] outline-none transition focus:border-primary focus:shadow-[var(--glow-soft)]";
 
 export function LeadForm() {
   const [errors, setErrors] = useState<Errors>({});
@@ -79,7 +79,7 @@ export function LeadForm() {
     <form
       onSubmit={onSubmit}
       noValidate
-      className="panel gold-frame space-y-5 rounded-xl p-6 sm:p-8"
+      className="panel gold-frame space-y-5 rounded-2xl p-6 sm:p-8 bg-white/95 shadow-xl border border-primary/35"
     >
       <div className="grid gap-5 sm:grid-cols-2">
         {F({ name: "name", label: "Full name", ph: "Enter your full name" })}

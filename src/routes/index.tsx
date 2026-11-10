@@ -5,7 +5,8 @@ import { LeadForm } from "@/components/landing/LeadForm";
 import { StoriesCarousel } from "@/components/landing/StoriesCarousel";
 import { StayOrMoveSection } from "@/components/landing/StayOrMoveSection";
 import vsl from "@/assets/vsl-stock.jpg";
-import logoAsset from "@/assets/joseph-aziz-logo-light.png";
+import logoDarkAsset from "@/assets/joseph-aziz-logo-dark.png";
+import logoLightAsset from "@/assets/joseph-aziz-logo-light.png";
 import josephAsset from "@/assets/joseph-aziz-keys.png";
 import formHouse from "@/assets/form-house-stock.jpg";
 
@@ -42,12 +43,12 @@ function CTA({ small }: { small?: boolean }) {
   );
 }
 
-function Logo({ compact }: { compact?: boolean }) {
+function Logo({ compact, light }: { compact?: boolean; light?: boolean }) {
   return (
     <img
-      src={logoAsset}
+      src={light ? logoLightAsset : logoDarkAsset}
       alt="Joseph Aziz Real Estate"
-      className={`${compact ? "h-10" : "mx-auto h-6 sm:h-7"} w-auto`}
+      className={`${compact ? "h-10" : "mx-auto h-7 sm:h-8"} w-auto`}
     />
   );
 }
@@ -56,7 +57,7 @@ function Eyebrow({ children }: { children: string }) {
   return (
     <div className="flex items-center justify-center gap-4">
       <span className="gold-divider w-16 sm:w-28" />
-      <span className="text-sm font-semibold uppercase tracking-[0.25em] text-primary">{children}</span>
+      <span className="text-sm font-semibold uppercase tracking-[0.25em] text-[#7C132B]">{children}</span>
       <span className="gold-divider w-16 sm:w-28" />
     </div>
   );
@@ -65,55 +66,103 @@ function Eyebrow({ children }: { children: string }) {
 function Index() {
   return (
     <main className="relative overflow-x-hidden text-foreground">
-      {/* Still/Fixed Background Grid that does not move with scroll */}
-      <div
+      {/* Top-Left Luxury Gold Satin Ribbon */}
+      <svg
         aria-hidden="true"
-        className="pointer-events-none fixed inset-0 z-0 bg-grid"
-      />
+        className="pointer-events-none fixed top-0 left-0 z-0 h-44 w-44 sm:h-64 sm:w-64 opacity-80"
+        viewBox="0 0 300 300"
+        fill="none"
+        xmlns="http://www.w3.org/2000/svg"
+      >
+        <path
+          d="M-50 180 C40 160 140 90 200 -40 L160 -40 C110 70 30 130 -50 150 Z"
+          fill="url(#goldSilk1)"
+        />
+        <path
+          d="M-50 140 C50 120 160 50 230 -40 L270 -40 C190 70 60 150 -50 180 Z"
+          fill="url(#goldSilk2)"
+          opacity="0.75"
+        />
+        <defs>
+          <linearGradient id="goldSilk1" x1="0%" y1="100%" x2="100%" y2="0%">
+            <stop offset="0%" stopColor="#C59B4B" stopOpacity="0.4" />
+            <stop offset="50%" stopColor="#F5DFAB" stopOpacity="0.9" />
+            <stop offset="100%" stopColor="#9C722B" stopOpacity="0.5" />
+          </linearGradient>
+          <linearGradient id="goldSilk2" x1="0%" y1="100%" x2="100%" y2="0%">
+            <stop offset="0%" stopColor="#9C722B" stopOpacity="0.3" />
+            <stop offset="45%" stopColor="#FFF2D1" stopOpacity="0.95" />
+            <stop offset="100%" stopColor="#B38638" stopOpacity="0.4" />
+          </linearGradient>
+        </defs>
+      </svg>
+
+      {/* Bottom-Right Luxury Gold Satin Ribbon */}
+      <svg
+        aria-hidden="true"
+        className="pointer-events-none fixed bottom-0 right-0 z-0 h-44 w-44 sm:h-64 sm:w-64 opacity-80"
+        viewBox="0 0 300 300"
+        fill="none"
+        xmlns="http://www.w3.org/2000/svg"
+      >
+        <path
+          d="M350 120 C260 140 160 210 100 340 L140 340 C190 230 270 170 350 150 Z"
+          fill="url(#goldSilkBottom1)"
+        />
+        <path
+          d="M350 160 C250 180 140 250 70 340 L30 340 C110 230 240 150 350 120 Z"
+          fill="url(#goldSilkBottom2)"
+          opacity="0.75"
+        />
+        <defs>
+          <linearGradient id="goldSilkBottom1" x1="100%" y1="0%" x2="0%" y2="100%">
+            <stop offset="0%" stopColor="#C59B4B" stopOpacity="0.4" />
+            <stop offset="50%" stopColor="#F5DFAB" stopOpacity="0.9" />
+            <stop offset="100%" stopColor="#9C722B" stopOpacity="0.5" />
+          </linearGradient>
+          <linearGradient id="goldSilkBottom2" x1="100%" y1="0%" x2="0%" y2="100%">
+            <stop offset="0%" stopColor="#9C722B" stopOpacity="0.3" />
+            <stop offset="45%" stopColor="#FFF2D1" stopOpacity="0.95" />
+            <stop offset="100%" stopColor="#B38638" stopOpacity="0.4" />
+          </linearGradient>
+        </defs>
+      </svg>
+
       <div className="relative z-10">
       {/* HERO */}
       <section className="relative bg-transparent">
         <div className="relative mx-auto max-w-5xl px-5 pb-12 pt-6 text-center fade-up">
           <Logo />
-          <div className="mt-4 inline-block rounded-xl border border-primary/70 bg-background/50 px-5 py-2 text-xs font-semibold uppercase tracking-wider backdrop-blur-sm sm:text-sm">
-            <span className="text-primary">For Bergen County homeowners</span> considering an addition, renovation, or rebuild
+          <div className="mt-4 inline-block rounded-full border border-primary/60 bg-white/80 px-5 py-2 text-xs font-semibold uppercase tracking-wider backdrop-blur-sm sm:text-sm shadow-xs">
+            <span className="text-[#7C132B] font-bold">For Bergen County homeowners</span>{" "}
+            <span className="text-[#3D3335] font-medium">considering an addition, renovation, or rebuild</span>
           </div>
-          <h1 className="mx-auto mt-6 max-w-4xl text-4xl leading-[1.2] sm:text-5xl lg:text-[64px] lg:leading-[1.18]">
+          <h1 className="mx-auto mt-6 max-w-4xl text-4xl leading-[1.2] sm:text-5xl lg:text-[64px] lg:leading-[1.18] text-[#460711]">
             Before You Spend{" "}
-            <span className="relative inline-block whitespace-nowrap px-[0.22em] align-baseline text-[1.05em] leading-none">
-              <span
-                aria-hidden
-                className="absolute inset-x-0 top-[0.08em] bottom-[0.06em] rounded-[0.14em]"
-                style={{ background: "var(--gradient-gold)" }}
-              />
-              <span className="relative text-primary-foreground">$250,000</span>
+            <span className="relative inline-block whitespace-nowrap px-[0.34em] py-[0.1em] align-baseline text-[0.98em] leading-none rounded-2xl bg-gradient-to-r from-[#7C132B] via-[#5C0A1A] to-[#3B0510] text-white shadow-md border border-[#941A35]/50">
+              <span className="relative font-serif italic font-normal text-white">$250,000</span>
             </span>{" "}
             on an Addition, Find Out What It Would Take to{" "}
-            <span className="relative inline-block whitespace-nowrap px-[0.22em] align-baseline text-[1.05em] leading-none">
-              <span
-                aria-hidden
-                className="absolute inset-x-0 top-[0.08em] bottom-[0.06em] rounded-[0.14em]"
-                style={{ background: "var(--gradient-gold)" }}
-              />
-              <span className="relative text-primary-foreground">Move</span>
+            <span className="relative inline-block whitespace-nowrap px-[0.34em] py-[0.1em] align-baseline text-[0.98em] leading-none rounded-2xl bg-gradient-to-r from-[#7C132B] via-[#5C0A1A] to-[#3B0510] text-white shadow-md border border-[#941A35]/50">
+              <span className="relative font-serif italic font-normal text-white">Move</span>
             </span>{" "}
             Into{" "}
-            <em className="gold-text">the Home You Actually Want.</em>
+            <em className="gold-text not-italic font-serif">the Home You Actually Want.</em>
           </h1>
-          <button aria-label="Watch the video" className="group gold-frame relative mx-auto mt-8 block aspect-video w-full max-w-3xl overflow-hidden rounded-2xl shadow-2xl">
+          <button aria-label="Watch the video" className="group gold-frame relative mx-auto mt-8 block aspect-video w-full max-w-3xl overflow-hidden rounded-2xl bg-black shadow-2xl">
             <img src={vsl} alt="Modern luxury architectural interior at dusk" loading="lazy" width={1280} height={720} className="h-full w-full object-cover transition duration-700 group-hover:scale-105" />
-            <span className="absolute inset-0 bg-background/40" />
+            <span className="absolute inset-0 bg-black/35" />
             <span className="absolute inset-0 flex flex-col items-center justify-center gap-4">
-              <span className="flex h-20 w-20 items-center justify-center rounded-full border-2 border-primary bg-background/70 text-primary shadow-[var(--glow-gold)] backdrop-blur-md transition duration-300 group-hover:scale-110 group-hover:bg-primary group-hover:text-primary-foreground">
+              <span className="flex h-20 w-20 items-center justify-center rounded-full border-2 border-primary bg-black/55 text-primary shadow-[var(--glow-gold)] transition group-hover:scale-110">
                 <Play className="ml-1 h-9 w-9 fill-current" />
               </span>
-              <span className="text-sm font-semibold uppercase tracking-[0.25em] text-foreground">Watch the video</span>
+              <span className="text-sm font-semibold uppercase tracking-[0.25em] text-white">Watch the video</span>
             </span>
           </button>
-          <p className="mx-auto mt-6 max-w-3xl text-lg text-foreground/90 sm:text-xl">
+          <p className="mx-auto mt-6 max-w-3xl text-lg text-[#3D3335] sm:text-xl font-normal leading-relaxed">
             Joseph Aziz’s Stay-or-Move Evaluation compares what your home could sell for today, what it could be worth after the work, and what you could buy instead, including the costs of selling and moving.
           </p>
-          <div className="mt-8 [&>a]:!px-5 [&>a]:!py-3 [&>a]:!text-sm sm:[&>a]:!px-8 sm:[&>a]:!py-4 sm:[&>a]:!text-lg [&>a>svg]:h-4 [&>a>svg]:w-4"><CTA /></div>
+          <div className="mt-8 [&>a]:!px-6 [&>a]:!py-3.5 [&>a]:!text-base sm:[&>a]:!px-9 sm:[&>a]:!py-4 sm:[&>a]:!text-lg [&>a>svg]:h-5 [&>a>svg]:w-5"><CTA /></div>
         </div>
       </section>
 
@@ -246,24 +295,27 @@ function Index() {
       </section>
 
       {/* FOOTER */}
-      <footer className="relative border-t border-primary/25 bg-[#080808] px-5 py-12 text-foreground">
+      <footer className="relative border-t border-primary/30 bg-[#22050B] px-5 py-12 text-[#FAF6F2]">
         <div className="mx-auto flex max-w-6xl flex-col items-center justify-between gap-6 text-base md:flex-row">
-          <Logo compact />
+          <div className="flex flex-col items-center md:items-start gap-1">
+            <Logo compact light />
+            <span className="text-xs text-[#E5DCD0]/70">Prestige Property Group Montclair</span>
+          </div>
           <div className="flex items-start gap-2">
             <MapPin className="mt-1 h-5 w-5 text-primary shrink-0" />
             <span>151 Forest St, Unit H<br />Montclair, NJ 07042</span>
           </div>
-          <a href="tel:2017085067" className="flex items-center gap-2 hover:text-primary transition-colors">
+          <a href="tel:2017085067" className="flex items-center gap-2 hover:text-primary transition-colors text-white">
             <Phone className="h-5 w-5 text-primary shrink-0" />
             201-708-5067
           </a>
-          <div className="flex gap-2">
+          <div className="flex gap-2 text-sm text-[#E5DCD0]/80">
             <a href="#" className="hover:text-primary transition-colors">Privacy Policy</a>
-            <span className="text-border">|</span>
+            <span className="text-primary/40">|</span>
             <span>Equal Housing Opportunity</span>
           </div>
         </div>
-        <p className="mt-8 text-center text-sm italic text-muted-foreground/80">
+        <p className="mt-8 text-center text-sm italic text-[#E5DCD0]/60">
           Property values are estimates, not guarantees of a future sale price. Individual client outcomes vary.
         </p>
       </footer>
