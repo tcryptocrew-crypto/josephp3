@@ -72,7 +72,7 @@ function Index() {
         <div className="relative mx-auto max-w-5xl px-5 pb-10 pt-4 text-center fade-up sm:pb-12 sm:pt-6">
           <Logo />
           <div className="mt-3 inline-block rounded-full border border-border bg-white/80 px-5 py-2 text-xs font-semibold uppercase tracking-wider backdrop-blur-sm sm:mt-4 sm:text-sm shadow-xs">
-            <span className="text-primary font-bold">For Bergen County homeowners</span>
+            <span className="text-primary font-bold">Bergen County homeowners</span>
           </div>
           <h1 className="hero-title mx-auto mt-3 max-w-4xl text-foreground sm:mt-4">
             Before You Spend{" "}
