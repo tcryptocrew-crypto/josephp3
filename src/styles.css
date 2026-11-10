@@ -73,8 +73,8 @@
   --primary: oklch(0.435 0.09 8); /* Muted burgundy */
   --wine: oklch(0.36 0.112 8);
   --wine-deep: oklch(0.267 0.081 8);
-  --forest: oklch(0.32 0.046 160);
-  --forest-mist: oklch(0.925 0.022 155);
+  --contrast-ground: var(--foreground);
+  --contrast-tint: var(--secondary);
   --primary-foreground: oklch(1 0 0);
   --secondary: oklch(0.965 0.01 10); /* Porcelain blush */
   --secondary-foreground: var(--foreground);
@@ -243,14 +243,14 @@
 }
 
 .faq-section {
-  --eyebrow-ink: var(--forest-mist);
-  --eyebrow-rule: color-mix(in oklab, var(--forest-mist) 34%, transparent);
-  background: var(--forest);
+  --eyebrow-ink: var(--contrast-tint);
+  --eyebrow-rule: color-mix(in oklab, var(--contrast-tint) 34%, transparent);
+  background: var(--contrast-ground);
   color: var(--background);
 }
 
 .faq-section .panel[data-state="open"] {
-  background: var(--forest-mist);
+  background: var(--contrast-tint);
 }
 
 .story-viewport::before,
@@ -265,12 +265,12 @@
 
 .story-viewport::before {
   left: 0;
-  background: linear-gradient(to right, color-mix(in oklab, var(--forest-mist) 58%, transparent), transparent);
+  background: linear-gradient(to right, color-mix(in oklab, var(--contrast-tint) 58%, transparent), transparent);
 }
 
 .story-viewport::after {
   right: 0;
-  background: linear-gradient(to left, color-mix(in oklab, var(--forest-mist) 58%, transparent), transparent);
+  background: linear-gradient(to left, color-mix(in oklab, var(--contrast-tint) 58%, transparent), transparent);
 }
 
 @utility headline-mark {

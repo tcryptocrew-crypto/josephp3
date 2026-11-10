@@ -1,7 +1,7 @@
 .section {
-  --decision-ground: var(--forest);
+  --decision-ground: var(--contrast-ground);
   --decision-ink: var(--background);
-  --decision-accent: var(--forest-mist);
+  --decision-accent: var(--contrast-tint);
   --decision-line: color-mix(in oklab, var(--decision-ink) 24%, transparent);
   position: relative;
   overflow: hidden;
@@ -121,7 +121,7 @@
   border-radius: 16px;
   background: var(--background);
   color: var(--foreground);
-  box-shadow: 0 10px 28px -14px oklch(0.12 0.025 160 / 0.4);
+  box-shadow: 0 10px 28px -14px oklch(0.12 0.006 9 / 0.4);
 }
 
 .questionIcon {

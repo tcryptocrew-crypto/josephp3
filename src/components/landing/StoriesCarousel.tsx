@@ -102,7 +102,7 @@ export function StoriesCarousel() {
       {/* Soft halo behind the centred video */}
       <div
         aria-hidden
-        className="pointer-events-none absolute left-1/2 top-[46%] h-[62%] w-[52%] -translate-x-1/2 -translate-y-1/2 rounded-full bg-[var(--forest)]/10 blur-3xl"
+        className="pointer-events-none absolute left-1/2 top-[46%] h-[62%] w-[52%] -translate-x-1/2 -translate-y-1/2 rounded-full bg-[var(--contrast-ground)]/10 blur-3xl"
       />
 
       <div ref={ref} className="story-viewport relative overflow-hidden px-4 py-2 sm:px-6">
