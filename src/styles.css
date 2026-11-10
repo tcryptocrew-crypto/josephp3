@@ -15,6 +15,7 @@
  */
 
 @theme inline {
+  --font-serif: "DM Serif Display", Georgia, serif;
   --font-sans: "Manrope", system-ui, sans-serif;
   --color-rating: var(--rating);
   --color-section: var(--section);
@@ -132,14 +133,9 @@
   }
 
   h1, h2, h3 {
-    font-family: var(--font-sans);
-    font-weight: 700;
-    letter-spacing: -0.035em;
+    font-family: var(--font-serif);
+    font-weight: 400;
     line-height: 1.15;
-  }
-
-  h1 em, h2 em, h3 em {
-    font-style: normal;
   }
 }
 
@@ -246,25 +242,11 @@
   color: var(--eyebrow-ink, var(--primary));
 }
 
-.heading-accent {
-  font-style: italic;
-  font-weight: 800;
-  text-decoration: underline;
-  text-decoration-thickness: 0.055em;
-  text-underline-offset: 0.13em;
-  text-transform: none;
-  white-space: nowrap;
-}
-
 .faq-section {
   --eyebrow-ink: var(--forest-mist);
   --eyebrow-rule: color-mix(in oklab, var(--forest-mist) 34%, transparent);
   background: var(--forest);
   color: var(--background);
-}
-
-.faq-section .heading-accent {
-  color: var(--forest-mist);
 }
 
 .faq-section .panel[data-state="open"] {
@@ -389,21 +371,38 @@
   html { scroll-behavior: auto; }
 }
 
-.hero-mobile-break {
-  display: none;
+.hero-title {
+  font-family: var(--font-serif);
+  font-size: 2.25rem;
+  font-weight: 400;
+  letter-spacing: -0.015em;
+  line-height: 1.12;
 }
 
-@media (max-width: 400px) {
-  .hero-audience-detail {
-    display: none;
-  }
+.hero-highlight {
+  display: inline-block;
+  padding: 0.04em 0.25em;
+  border-radius: 0.22em;
+  font-size: 0.98em;
+  font-style: italic;
+  line-height: 1;
+  vertical-align: baseline;
+  white-space: nowrap;
+}
 
-  .hero-amount {
-    padding: 0;
-    border: 0;
-    background: none;
-    color: inherit;
-    box-shadow: none;
+.hero-title .hero-outcome {
+  font-style: italic;
+}
+
+@media (width >= 640px) {
+  .hero-title {
+    font-size: 3rem;
+  }
+}
+
+@media (width >= 1024px) {
+  .hero-title {
+    font-size: 4rem;
   }
 }
 
@@ -448,13 +447,4 @@
     font-size: 0.6875rem;
   }
 
-  .hero-title {
-    margin-top: 1rem;
-    font-size: clamp(1.125rem, calc((100vw - 2.5rem) / 14.65), 1.875rem);
-    font-weight: 800;
-  }
-
-  .hero-mobile-break {
-    display: initial;
-  }
 }

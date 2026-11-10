@@ -48,7 +48,7 @@ function Logo({ compact, light }: { compact?: boolean; light?: boolean }) {
     <img
       src={light ? logoLightAsset : logoDarkAsset}
       alt="Joseph Aziz Real Estate"
-      className={`${compact ? "h-10" : "mx-auto h-7 sm:h-8"} w-auto`}
+      className={`${compact ? "h-8" : "mx-auto h-5 sm:h-7"} w-auto`}
     />
   );
 }
@@ -69,22 +69,17 @@ function Index() {
       <div className="relative z-10">
       {/* HERO */}
       <section className="relative bg-transparent">
-        <div className="relative mx-auto max-w-5xl px-5 pb-10 pt-6 text-center fade-up sm:pb-12">
+        <div className="relative mx-auto max-w-5xl px-5 pb-10 pt-4 text-center fade-up sm:pb-12 sm:pt-6">
           <Logo />
-          <div className="mt-4 inline-block rounded-full border border-border bg-white/80 px-5 py-2 text-xs font-semibold uppercase tracking-wider backdrop-blur-sm sm:text-sm shadow-xs">
-            <span className="text-primary font-bold">For Bergen County homeowners</span>{" "}
-            <span className="hero-audience-detail text-foreground font-medium">considering an addition, renovation, or rebuild</span>
+          <div className="mt-3 inline-block rounded-full border border-border bg-white/80 px-5 py-2 text-xs font-semibold uppercase tracking-wider backdrop-blur-sm sm:mt-4 sm:text-sm shadow-xs">
+            <span className="text-primary font-bold">For Bergen County homeowners</span>
           </div>
-          <h1 className="hero-title mx-auto mt-6 max-w-4xl text-4xl uppercase leading-[1.1] sm:text-[40px] lg:text-5xl lg:leading-[1.1] text-foreground">
+          <h1 className="hero-title mx-auto mt-3 max-w-4xl text-foreground sm:mt-4">
             Before You Spend{" "}
-            <span className="hero-amount relative inline-block whitespace-nowrap px-[0.34em] py-[0.1em] align-baseline text-[0.98em] leading-none rounded-2xl headline-mark text-white shadow-md">$250,000</span>{" "}
-            <br className="hero-mobile-break" />
-            on an Addition, Find Out{" "}
-            <br className="hero-mobile-break" />
-            What It Would Take to{" "}
-            <br className="hero-mobile-break" />
-            <span className="relative inline-block whitespace-nowrap px-[0.34em] py-[0.1em] align-baseline text-[0.98em] leading-none rounded-2xl headline-mark text-white shadow-md">Move</span>{" "}
-            Into <em className="text-primary">the Home{" "}<br className="hero-mobile-break" />You Actually <span className="heading-accent">Want.</span></em>
+            <span className="hero-highlight headline-mark text-white shadow-md">$250,000</span>{" "}
+            on an Addition, Find Out What It Would Take to{" "}
+            <span className="hero-highlight headline-mark text-white shadow-md">Move</span>{" "}
+            Into <em className="hero-outcome text-primary">the Home You Actually Want.</em>
           </h1>
           <button aria-label="Watch the video" className="group media-frame relative mx-auto mt-6 block aspect-video w-full max-w-3xl overflow-hidden rounded-2xl bg-black shadow-2xl sm:mt-8">
             <img src={vsl} alt="Modern luxury architectural interior at dusk" loading="lazy" width={1280} height={720} className="h-full w-full object-cover motion-safe:transition-transform motion-safe:duration-500 motion-safe:group-hover:scale-[1.025]" />
@@ -136,7 +131,7 @@ function Index() {
       {/* CASE STUDIES */}
       <section className="relative bg-transparent py-12 sm:py-16">
         <Eyebrow>Case Studies</Eyebrow>
-        <h2 className="landing-section-title mt-3 mb-6 px-5 text-center text-4xl sm:mb-10 sm:text-[44px]">Real Homeowner <span className="heading-accent text-primary">Stories</span></h2>
+        <h2 className="landing-section-title mt-3 mb-6 px-5 text-center text-4xl sm:mb-10 sm:text-[44px]">Real Homeowner Stories</h2>
         <StoriesCarousel />
       </section>
 
@@ -147,7 +142,7 @@ function Index() {
       <section className="relative bg-transparent px-5 py-12 sm:py-28">
         <div className="mx-auto max-w-6xl">
           <h2 className="landing-section-title mx-auto max-w-3xl text-center text-[32px] leading-[1.15] sm:text-[48px]">
-            Work With an Agent Who Has Made Construction Decisions With <em className="text-primary">His Own <span className="heading-accent">Money.</span></em>
+            Work With an Agent Who Has Made Construction Decisions With <em className="text-primary">His Own Money.</em>
           </h2>
           <div className="mt-8 grid items-center gap-8 sm:mt-14 sm:gap-12 md:grid-cols-[5fr_7fr] md:gap-16">
             <div className="relative mx-auto w-full max-w-sm">
@@ -168,7 +163,7 @@ function Index() {
       {/* FAQ */}
       <section id="faq" className="faq-section relative px-5 py-12 sm:py-16">
         <Eyebrow>FAQs</Eyebrow>
-        <h2 className="landing-section-title mt-3 text-center text-4xl sm:text-[44px]">You Do Not Need to Decide to Sell Before We <span className="heading-accent">Talk.</span></h2>
+        <h2 className="landing-section-title mt-3 text-center text-4xl sm:text-[44px]">You Do Not Need to Decide to Sell Before We Talk.</h2>
         <Accordion type="single" collapsible className="mx-auto mt-7 max-w-4xl space-y-3 sm:mt-10">
           {faqs.map(([q, a], i) => (
             <AccordionItem key={i} value={`f${i}`} className="panel rounded-lg px-4 text-foreground transition-colors sm:px-6">
@@ -215,7 +210,7 @@ function Index() {
             </div>
             <h2 className="landing-section-title relative mt-5 text-[28px] leading-[1.2] text-balance sm:text-[38px] lg:text-[44px]">
               Before You Commit to <em className="text-primary">Construction</em>, Know What Your{" "}
-              <em className="text-primary">Other <span className="heading-accent">Option</span></em>{" "}
+              <em className="text-primary">Other Option</em>{" "}
               Looks Like.
             </h2>
           </div>
