@@ -1,10 +1,10 @@
 import { createFileRoute } from "@tanstack/react-router";
-import { ChevronRight, Play, Trophy, Layers, Home, Star, MapPin, Phone } from "lucide-react";
+import { createElement } from "react";
+import { ChevronRight, Trophy, Layers, Home, Star, MapPin, Phone } from "lucide-react";
 import { Accordion, AccordionContent, AccordionItem, AccordionTrigger } from "@/components/ui/accordion";
 import { LeadForm } from "@/components/landing/LeadForm";
 import { StoriesCarousel } from "@/components/landing/StoriesCarousel";
 import { StayOrMoveSection } from "@/components/landing/StayOrMoveSection";
-import vsl from "@/assets/vsl-stock.jpg";
 import logoDarkAsset from "@/assets/joseph-aziz-logo-dark.png";
 import logoLightAsset from "@/assets/joseph-aziz-logo-light.png";
 import josephAsset from "@/assets/joseph-aziz-keys.png";
@@ -23,6 +23,10 @@ export const Route = createFileRoute("/")({
       { property: "og:description", content: DESC },
       { property: "og:type", content: "website" },
       { name: "twitter:card", content: "summary_large_image" },
+    ],
+    scripts: [
+      { src: "https://fast.wistia.com/player.js", async: true },
+      { src: "https://fast.wistia.com/embed/m0m8e6gfb6.js", async: true, type: "module" },
     ],
   }),
   component: Index,
@@ -92,16 +96,15 @@ function Index() {
             <span className="hero-highlight headline-mark text-white shadow-md">Move</span>{" "}
             Into <em className="hero-outcome text-primary">the Home You Actually Want.</em>
           </h1>
-          <button aria-label="Watch the video" className="group media-frame relative mx-auto mt-6 block aspect-video w-full max-w-3xl overflow-hidden rounded-2xl bg-black shadow-2xl sm:mt-8">
-            <img src={vsl} alt="Modern luxury architectural interior at dusk" loading="lazy" width={1280} height={720} className="h-full w-full object-cover motion-safe:transition-transform motion-safe:duration-500 motion-safe:group-hover:scale-[1.025]" />
-            <span className="absolute inset-0 bg-black/35" />
-            <span className="absolute inset-0 flex flex-col items-center justify-center gap-2.5 sm:gap-4">
-              <span className="flex size-12 items-center justify-center rounded-full border border-white/70 bg-foreground/85 text-white shadow-lg motion-safe:transition-transform motion-safe:group-hover:scale-[1.035] min-[380px]:size-14 sm:size-20">
-                <Play className="ml-0.5 size-6 fill-current sm:ml-1 sm:size-9" />
-              </span>
-              <span className="text-[11px] font-semibold uppercase tracking-[0.25em] text-white sm:text-sm">Watch the video</span>
-            </span>
-          </button>
+          <div className="hero-video media-frame relative mx-auto mt-6 aspect-video w-full max-w-3xl overflow-hidden rounded-2xl bg-black shadow-2xl sm:mt-8">
+            {createElement("wistia-player", {
+              "media-id": "m0m8e6gfb6",
+              aspect: "1.7777777777777777",
+              "player-color": "#191919",
+              "fullscreen-control": "false",
+              "aria-label": "Joseph Aziz Stay-or-Move evaluation video",
+            })}
+          </div>
           <p className="landing-copy mx-auto mt-5 max-w-[46ch] text-lg text-foreground sm:mt-6 sm:max-w-3xl sm:text-xl font-normal leading-relaxed">
             Joseph Aziz’s Stay-or-Move Evaluation compares what your home could sell for today, what it could be worth after the work, and what you could buy instead, including the costs of selling and moving.
           </p>
