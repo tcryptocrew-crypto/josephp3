@@ -4,9 +4,9 @@ import { ChevronLeft, ChevronRight } from "lucide-react";
 import { WistiaVideo } from "./WistiaVideo";
 
 const stories = [
-  { id: "26kunyl0qb", aspect: "0.75" },
   { id: "s0jsdzilad", aspect: "0.5625" },
   { id: "s0cb5zf8yx", aspect: "0.5625" },
+  { id: "26kunyl0qb", aspect: "0.75" },
 ];
 
 // Keep neighbours on both sides of the centred card at every viewport width.
@@ -49,11 +49,11 @@ export function StoriesCarousel() {
         className="pointer-events-none absolute left-1/2 top-[46%] h-[62%] w-[52%] -translate-x-1/2 -translate-y-1/2 rounded-full bg-[var(--contrast-ground)]/10 blur-3xl"
       />
       <div ref={ref} className="story-viewport relative overflow-hidden px-4 py-2 sm:px-6">
-        <div className="flex">
+        <div className="flex items-center">
           {track.map((story, i) => (
             <div key={i} className="min-w-0 shrink-0 basis-[70%] px-2 sm:basis-[34%] sm:px-3">
               <div
-                className={`relative flex aspect-[9/16] w-full items-center overflow-hidden rounded-2xl bg-black motion-safe:transition-[scale,opacity] motion-safe:duration-300 ${
+                className={`relative w-full overflow-hidden rounded-2xl bg-black motion-safe:transition-[scale,opacity] motion-safe:duration-300 ${
                   active === i % stories.length
                     ? "media-frame scale-100 opacity-100"
                     : "scale-[0.85] border border-border opacity-40 hover:opacity-75"
@@ -63,6 +63,7 @@ export function StoriesCarousel() {
                   mediaId={story.id}
                   aspect={story.aspect}
                   label={`Homeowner testimonial ${(i % stories.length) + 1}`}
+                  compactPlayButton
                 />
               </div>
             </div>

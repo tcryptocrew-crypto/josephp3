@@ -11,11 +11,13 @@ interface WistiaVideoProps {
   aspect: string;
   label: string;
   className?: string;
+  compactPlayButton?: boolean;
 }
 
-export function WistiaVideo({ mediaId, aspect, label, className = "" }: WistiaVideoProps) {
+export function WistiaVideo({ mediaId, aspect, label, className = "", compactPlayButton = false }: WistiaVideoProps) {
   const playerRef = useRef<WistiaPlayerElement | null>(null);
-  const [paused, setPaused] = useState(false);
+  const [paused, setPaused] = useState(compactPlayButton);
+  const [ready, setReady] = useState(false);
 
   useEffect(() => {
     const player = playerRef.current;
@@ -24,7 +26,9 @@ export function WistiaVideo({ mediaId, aspect, label, className = "" }: WistiaVi
     let playing = false;
     const onPause = () => { playing = false; setPaused(true); };
     const onPlay = () => { playing = true; setPaused(false); };
-    const onEnded = () => { playing = false; setPaused(false); };
+    const onEnded = () => { playing = false; setPaused(compactPlayButton); };
+    const onReady = () => setReady(true);
+    if (typeof player.play === "function") setReady(true);
     const onOtherPlay = (event: Event) => {
       if (
         event.target instanceof HTMLElement &&
@@ -39,13 +43,15 @@ export function WistiaVideo({ mediaId, aspect, label, className = "" }: WistiaVi
     player.addEventListener("pause", onPause);
     player.addEventListener("play", onPlay);
     player.addEventListener("ended", onEnded);
+    player.addEventListener("api-ready", onReady);
     return () => {
       document.removeEventListener("play", onOtherPlay, true);
       player.removeEventListener("pause", onPause);
       player.removeEventListener("play", onPlay);
       player.removeEventListener("ended", onEnded);
+      player.removeEventListener("api-ready", onReady);
     };
-  }, []);
+  }, [compactPlayButton]);
 
   function resume() {
     const player = playerRef.current;
@@ -74,11 +80,18 @@ export function WistiaVideo({ mediaId, aspect, label, className = "" }: WistiaVi
         "play-bar-control": "true",
         "play-pause-control": "true",
         "play-pause-notifier": "false",
+        ...(compactPlayButton ? { "big-play-button": "false" } : {}),
         "aria-label": label,
         style: { backgroundImage: `url(https://fast.wistia.com/embed/medias/${mediaId}/swatch)` },
       })}
       {paused && (
-        <button type="button" className="video-resume" aria-label="Resume video" onClick={resume}>
+        <button
+          type="button"
+          className={`video-resume${compactPlayButton ? " video-play-compact" : ""}`}
+          aria-label={compactPlayButton ? `Play ${label}` : "Resume video"}
+          disabled={compactPlayButton && !ready}
+          onClick={resume}
+        >
           <Play aria-hidden="true" />
         </button>
       )}

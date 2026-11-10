@@ -24,12 +24,39 @@ describe("Inline testimonial videos", () => {
     const { container } = render(<StoriesCarousel />);
     const players = [...container.querySelectorAll("wistia-player")];
     expect([...new Set(players.map((p) => p.getAttribute("media-id")))]).toEqual([
-      "26kunyl0qb", "s0jsdzilad", "s0cb5zf8yx",
+      "s0jsdzilad", "s0cb5zf8yx", "26kunyl0qb",
     ]);
-    expect(players.slice(0, 3).map((p) => p.getAttribute("aspect"))).toEqual(["0.75", "0.5625", "0.5625"]);
+    expect(players.slice(0, 3).map((p) => p.getAttribute("aspect"))).toEqual(["0.5625", "0.5625", "0.75"]);
     expect(container.querySelector("iframe, img")).toBeNull();
     expect(screen.queryByRole("dialog")).not.toBeInTheDocument();
     players.forEach((p) => expect(p).toHaveAttribute("fullscreen-control", "false"));
+    players.forEach((p) => {
+      expect(p).toHaveAttribute("big-play-button", "false");
+      expect(p.parentElement?.parentElement?.className).not.toContain("aspect-[9/16]");
+    });
+  });
+
+  it("starts and resumes a testimonial with the same compact button and player", () => {
+    const { container } = render(
+      <WistiaVideo mediaId="26kunyl0qb" aspect="0.75" label="Testimonial" compactPlayButton />,
+    );
+    const player = container.querySelector("wistia-player")!;
+    const play = vi.fn();
+    Object.assign(player, { play, currentTime: 0 });
+    const button = screen.getByRole("button", { name: "Play Testimonial" });
+    expect(button).toBeDisabled();
+    fireEvent(player, new Event("api-ready"));
+    expect(button).toBeEnabled();
+    fireEvent.click(button);
+    expect(play).toHaveBeenCalledTimes(1);
+    fireEvent(player, new Event("play"));
+    expect(screen.queryByRole("button", { name: "Play Testimonial" })).not.toBeInTheDocument();
+    Object.assign(player, { currentTime: 23 });
+    fireEvent(player, new Event("pause"));
+    fireEvent.click(screen.getByRole("button", { name: "Play Testimonial" }));
+    expect(play).toHaveBeenCalledTimes(2);
+    expect(Reflect.get(player, "currentTime")).toBe(23);
+    expect(container.querySelector("wistia-player")).toBe(player);
   });
 
   it("pauses the previous video when another video starts, including the hero", () => {
