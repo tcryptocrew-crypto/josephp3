@@ -57,7 +57,10 @@ export function StayOrMoveSection() {
             <span className={styles.label}>Stay or Move</span>
           </div>
           <h2 id="stay-or-move-title" className={styles.title} data-decision-reveal>
-            A Bigger Version of Your House May Still Be <em>the Wrong House.</em>
+            <span className={styles.titleLine}>A Bigger Version of Your House</span>{" "}
+            <span className={styles.titleLine}>
+              May Still Be <em>the Wrong House.</em>
+            </span>
           </h2>
           <p className={styles.supporting} data-decision-reveal>
             Another bedroom could solve the space problem. But what about the layout, the location,

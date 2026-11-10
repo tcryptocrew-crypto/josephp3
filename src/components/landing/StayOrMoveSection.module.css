@@ -360,6 +360,20 @@
     padding-bottom: 48px;
   }
 
+  .title,
+  .supporting,
+  .reflection {
+    width: calc(100% - 12px);
+  }
+
+  .supporting {
+    margin-top: 14px;
+  }
+
+  .reflection {
+    margin-top: 20px;
+  }
+
   .reflection,
   .question p,
   .closing p {
@@ -379,6 +393,37 @@
   .questionIcon svg {
     width: 27px;
     height: 33px;
+  }
+}
+
+@media (width <= 490px) {
+  .title,
+  .supporting,
+  .reflection {
+    width: 100%;
+  }
+
+  .title {
+    font-size: min(1.75rem, calc((100vw - 36px) / 14.5));
+  }
+
+  .titleLine {
+    display: block;
+    white-space: nowrap;
+  }
+
+  .title em {
+    display: inline;
+  }
+
+  .supporting {
+    margin-top: 10px;
+    font-size: 0.875rem;
+  }
+
+  .reflection {
+    margin-top: 12px;
+    font-size: 1.0625rem;
   }
 }
 
