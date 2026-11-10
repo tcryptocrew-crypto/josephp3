@@ -57,7 +57,7 @@ export function StayOrMoveSection() {
             <span className={styles.label}>Sell to Buy</span>
           </div>
           <h2 id="stay-or-move-title" className={styles.title} data-decision-reveal>
-            A Great Offer on Your House Doesn’t Answer <em>Where You’ll Live Next.</em>
+            A Great Offer on Your House Doesn’t Answer <em>Where You’ll Live <span className="heading-accent">Next.</span></em>
           </h2>
           <p className={styles.supporting} data-decision-reveal>
             You want the extra bedroom, the better layout, or the home you no longer need to renovate.

@@ -41,7 +41,11 @@ const stories: Story[] = [
 const track = [...stories, ...stories];
 
 export function StoriesCarousel() {
-  const [ref, api] = useEmblaCarousel({ loop: true, align: "center" });
+  const [ref, api] = useEmblaCarousel({
+    loop: true,
+    align: "center",
+    breakpoints: { "(prefers-reduced-motion: reduce)": { duration: 0 } },
+  });
   const [sel, setSel] = useState(0);
   const [modalStoryIndex, setModalStoryIndex] = useState<number | null>(null);
   const sectionRef = useRef<HTMLDivElement>(null);
@@ -95,14 +99,13 @@ export function StoriesCarousel() {
 
   return (
     <div ref={sectionRef} className="relative mx-auto max-w-5xl">
-      {/* warm glow behind the centred video */}
+      {/* Soft halo behind the centred video */}
       <div
         aria-hidden
-        className="pointer-events-none absolute left-1/2 top-[46%] h-[62%] w-[52%] -translate-x-1/2 -translate-y-1/2 rounded-full opacity-35 blur-3xl"
-        style={{ background: "var(--gradient-gold)" }}
+        className="pointer-events-none absolute left-1/2 top-[46%] h-[62%] w-[52%] -translate-x-1/2 -translate-y-1/2 rounded-full bg-[var(--forest)]/10 blur-3xl"
       />
 
-      <div ref={ref} className="relative overflow-hidden px-4 py-2 sm:px-6">
+      <div ref={ref} className="story-viewport relative overflow-hidden px-4 py-2 sm:px-6">
         <div className="flex">
           {track.map((s, i) => {
             const isActive = active === i % stories.length;
@@ -114,9 +117,9 @@ export function StoriesCarousel() {
               >
                 <div
                   onClick={() => setModalStoryIndex(i % stories.length)}
-                  className={`group relative block aspect-[9/16] w-full cursor-pointer overflow-hidden rounded-2xl transition-all duration-500 ${
+                  className={`group relative block aspect-[9/16] w-full cursor-pointer overflow-hidden rounded-2xl focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-primary motion-safe:transition-[scale,opacity] motion-safe:duration-300 ${
                     isActive
-                      ? "gold-frame scale-100 opacity-100"
+                      ? "media-frame scale-100 opacity-100"
                       : "scale-[0.85] border border-border opacity-40 hover:opacity-75"
                   }`}
                   role="button"
@@ -134,7 +137,7 @@ export function StoriesCarousel() {
                     src={s.thumb}
                     alt=""
                     loading="lazy"
-                    className="absolute inset-0 h-full w-full object-cover transition-transform duration-700 group-hover:scale-105"
+                    className="absolute inset-0 h-full w-full object-cover motion-safe:transition-transform motion-safe:duration-500 motion-safe:group-hover:scale-[1.025] motion-safe:group-focus-visible:scale-[1.025]"
                   />
 
                   {/* Clean dark tint */}
@@ -142,8 +145,8 @@ export function StoriesCarousel() {
 
                   {/* Play Button Icon */}
                   <div className="absolute inset-0 flex items-center justify-center">
-                    <span className="flex h-16 w-16 items-center justify-center rounded-full border border-primary/60 bg-background/60 text-primary shadow-[var(--glow-gold)] backdrop-blur-sm transition-all duration-300 group-hover:scale-110 group-hover:bg-primary group-hover:text-primary-foreground">
-                      <Play className="ml-1 h-7 w-7 fill-current" />
+                    <span className="flex size-12 items-center justify-center rounded-full border border-white/65 bg-foreground/85 text-white shadow-lg backdrop-blur-sm transition-colors motion-safe:transition-[background-color,scale] motion-safe:duration-200 motion-safe:group-hover:scale-[1.035] group-hover:bg-primary group-hover:text-primary-foreground sm:size-16">
+                      <Play className="ml-0.5 size-5 fill-current sm:ml-1 sm:size-7" />
                     </span>
                   </div>
                 </div>
@@ -154,30 +157,31 @@ export function StoriesCarousel() {
       </div>
 
       {/* Carousel Navigation */}
-      <div className="mt-7 flex items-center justify-center gap-5">
+      <div className="mt-5 flex items-center justify-center gap-2 sm:mt-7 sm:gap-4">
         <button
           onClick={prev}
           aria-label="Previous story"
-          className="rounded-full border border-border p-2 text-foreground transition hover:border-primary hover:text-primary"
+          className="grid size-11 place-items-center rounded-full border border-border text-foreground transition hover:border-primary hover:text-primary"
         >
           <ChevronLeft className="h-4 w-4" />
         </button>
-        <div className="flex items-center gap-2">
+        <div className="flex items-center">
           {stories.map((_, i) => (
             <button
               key={i}
               aria-label={`Go to story ${i + 1}`}
+              aria-current={active === i ? "true" : undefined}
               onClick={() => api?.scrollTo(i)}
-              className={`h-2 rounded-full transition-all ${
-                active === i ? "w-6 bg-primary" : "w-2 bg-border"
-              }`}
-            />
+              className="grid size-11 place-items-center rounded-full"
+            >
+              <span aria-hidden="true" className={`h-2 rounded-full transition-[width,background-color] ${active === i ? "w-5 bg-primary" : "w-2 bg-border"}`} />
+            </button>
           ))}
         </div>
         <button
           onClick={next}
           aria-label="Next story"
-          className="rounded-full border border-border p-2 text-foreground transition hover:border-primary hover:text-primary"
+          className="grid size-11 place-items-center rounded-full border border-border text-foreground transition hover:border-primary hover:text-primary"
         >
           <ChevronRight className="h-4 w-4" />
         </button>
@@ -186,7 +190,7 @@ export function StoriesCarousel() {
       {/* VIDEO POPUP MODAL - Plays video in TRUE Original Size & Aspect Ratio */}
       {modalStoryIndex !== null && currentModalStory && (
         <div
-          className="fixed inset-0 z-50 flex items-center justify-center bg-black/85 p-3 sm:p-6 backdrop-blur-md animate-in fade-in duration-200"
+          className="fixed inset-0 z-50 flex items-center justify-center bg-black/85 p-3 sm:p-6 backdrop-blur-md motion-safe:animate-in motion-safe:fade-in motion-safe:duration-200"
           onClick={() => setModalStoryIndex(null)}
           role="dialog"
           aria-modal="true"
@@ -208,7 +212,7 @@ export function StoriesCarousel() {
 
             {/* Video Player in Original Size / Aspect Ratio with Full Player Controls */}
             <div
-              className="relative w-full overflow-hidden rounded-2xl border border-primary/60 bg-black shadow-[var(--glow-gold)]"
+              className="relative w-full overflow-hidden rounded-2xl border border-white/25 bg-black shadow-2xl"
               style={{
                 aspectRatio: currentModalStory.aspectRatio,
                 maxHeight: "84vh",
