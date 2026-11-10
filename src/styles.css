@@ -10,7 +10,7 @@
  * The @theme inline block maps CSS custom properties to Tailwind utility
  * classes (e.g. --color-primary -> bg-primary, text-primary).
  *
- * The :root block uses the client's exact brand green with matching green tints.
+ * The :root block uses the reference black with matching neutral tints.
  */
 
 @theme inline {
@@ -64,27 +64,27 @@
   color-scheme: light;
   --radius: 0.5rem;
   --background: oklch(0.982 0.004 60); /* Warm ivory */
-  --foreground: oklch(0.265 0.012 159); /* Deep green ink */
+  --foreground: oklch(0.265 0 0); /* Neutral dark ink */
   --card: oklch(1 0 0);
   --card-foreground: var(--foreground);
   --popover: var(--card);
   --popover-foreground: var(--foreground);
-  --primary: #1C3A2B; /* Client's brand green */
+  --primary: #191919; /* Black sampled from the client's reference */
   --brand-light: color-mix(in srgb, var(--primary) 82%, white);
   --brand-deep: color-mix(in srgb, var(--primary) 72%, black);
   --contrast-ground: var(--primary);
   --contrast-tint: var(--secondary);
   --primary-foreground: oklch(1 0 0);
-  --secondary: oklch(0.965 0.01 159); /* Soft sage */
+  --secondary: oklch(0.965 0 0); /* Soft gray */
   --secondary-foreground: var(--foreground);
   --muted: var(--secondary);
-  --muted-foreground: oklch(0.46 0.018 159);
-  --accent: oklch(0.939 0.019 159); /* Pale green wash */
+  --muted-foreground: oklch(0.46 0 0);
+  --accent: oklch(0.939 0 0); /* Pale gray wash */
   --accent-foreground: var(--primary);
   --destructive: oklch(0.48 0.17 25);
   --destructive-foreground: var(--primary-foreground);
-  --border: oklch(0.891 0.013 159);
-  --input: oklch(0.622 0.022 159);
+  --border: oklch(0.891 0 0);
+  --input: oklch(0.622 0 0);
   --ring: var(--primary);
   --rating: oklch(0.5743 0.1026 77.5); /* Gold for review stars */
   --section: var(--secondary);
@@ -157,7 +157,7 @@
   line-height: 1.35;
   text-align: center;
   border: 1px solid oklch(0.54 0.063 65);
-  box-shadow: inset 0 1px 0 #fff4df45, 0 6px 16px -6px #1c3a2b45;
+  box-shadow: inset 0 1px 0 #fff4df45, 0 6px 16px -6px #19191945;
   transition: transform 200ms ease, filter 200ms ease;
 
   & > svg {
