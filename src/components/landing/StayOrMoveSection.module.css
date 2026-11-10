@@ -121,7 +121,7 @@
   border-radius: 16px;
   background: var(--background);
   color: var(--foreground);
-  box-shadow: 0 10px 28px -14px oklch(0.12 0.006 9 / 0.4);
+  box-shadow: 0 10px 28px -14px color-mix(in srgb, var(--brand-deep) 40%, transparent);
 }
 
 .questionIcon {

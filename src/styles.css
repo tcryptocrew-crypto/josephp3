@@ -10,8 +10,7 @@
  * The @theme inline block maps CSS custom properties to Tailwind utility
  * classes (e.g. --color-primary -> bg-primary, text-primary).
  *
- * The :root block defines the light palette using oklch.
- * All colors MUST use oklch format.
+ * The :root block uses the client's exact brand green with matching green tints.
  */
 
 @theme inline {
@@ -65,32 +64,32 @@
   color-scheme: light;
   --radius: 0.5rem;
   --background: oklch(0.982 0.004 60); /* Warm ivory */
-  --foreground: oklch(0.265 0.012 9); /* Warm ink */
+  --foreground: oklch(0.265 0.012 159); /* Deep green ink */
   --card: oklch(1 0 0);
   --card-foreground: var(--foreground);
   --popover: var(--card);
   --popover-foreground: var(--foreground);
-  --primary: oklch(0.435 0.09 8); /* Muted burgundy */
-  --wine: oklch(0.36 0.112 8);
-  --wine-deep: oklch(0.267 0.081 8);
-  --contrast-ground: var(--foreground);
+  --primary: #1C3A2B; /* Client's brand green */
+  --brand-light: color-mix(in srgb, var(--primary) 82%, white);
+  --brand-deep: color-mix(in srgb, var(--primary) 72%, black);
+  --contrast-ground: var(--primary);
   --contrast-tint: var(--secondary);
   --primary-foreground: oklch(1 0 0);
-  --secondary: oklch(0.965 0.01 10); /* Porcelain blush */
+  --secondary: oklch(0.965 0.01 159); /* Soft sage */
   --secondary-foreground: var(--foreground);
   --muted: var(--secondary);
-  --muted-foreground: oklch(0.46 0.018 10);
-  --accent: oklch(0.939 0.019 10); /* Rose wash */
+  --muted-foreground: oklch(0.46 0.018 159);
+  --accent: oklch(0.939 0.019 159); /* Pale green wash */
   --accent-foreground: var(--primary);
   --destructive: oklch(0.48 0.17 25);
   --destructive-foreground: var(--primary-foreground);
-  --border: oklch(0.891 0.013 10);
-  --input: oklch(0.622 0.022 10);
+  --border: oklch(0.891 0.013 159);
+  --input: oklch(0.622 0.022 159);
   --ring: var(--primary);
   --rating: oklch(0.5743 0.1026 77.5); /* Gold for review stars */
   --section: var(--secondary);
   --chart-1: var(--primary);
-  --chart-2: var(--wine);
+  --chart-2: var(--brand-deep);
   --chart-3: var(--foreground);
   --chart-4: var(--input);
   --chart-5: var(--muted-foreground);
@@ -103,7 +102,7 @@
   --sidebar-border: var(--border);
   --sidebar-ring: var(--ring);
 
-  --glow-soft: 0 6px 18px -9px oklch(0.32 0.035 8 / 0.17);
+  --glow-soft: 0 6px 18px -9px color-mix(in srgb, var(--primary) 17%, transparent);
   --ease-settle: cubic-bezier(0.2, 0.7, 0.25, 1);
   --landing-section-title-max: 2.125rem;
   --landing-section-title: clamp(1.125rem, calc(0.3125rem + 4vw), var(--landing-section-title-max));
@@ -151,14 +150,14 @@
   border-radius: 9999px;
   background:
     radial-gradient(ellipse 80% 75% at 50% -22%, #ffead271, transparent),
-    linear-gradient(180deg, var(--primary), var(--wine) 55%, var(--wine-deep));
+    linear-gradient(180deg, var(--brand-light), var(--primary) 55%, var(--brand-deep));
   color: white;
   font-weight: 600;
   font-size: 0.875rem;
   line-height: 1.35;
   text-align: center;
   border: 1px solid oklch(0.54 0.063 65);
-  box-shadow: inset 0 1px 0 #fff4df45, 0 6px 16px -6px #4e152a45;
+  box-shadow: inset 0 1px 0 #fff4df45, 0 6px 16px -6px #1c3a2b45;
   transition: transform 200ms ease, filter 200ms ease;
 
   & > svg {
@@ -274,8 +273,8 @@
 }
 
 @utility headline-mark {
-  background: linear-gradient(110deg, var(--wine), var(--wine-deep));
-  border: 1px solid var(--wine);
+  background: linear-gradient(110deg, var(--primary), var(--brand-deep));
+  border: 1px solid var(--primary);
 }
 
 @utility panel {
@@ -332,7 +331,7 @@
   color: var(--primary-foreground);
 }
 
-.trust-stat-featured .trust-stat-value { color: var(--wine); }
+.trust-stat-featured .trust-stat-value { color: var(--primary); }
 
 @media (hover: hover) and (pointer: fine) and (prefers-reduced-motion: no-preference) {
   .trust-stat {
@@ -342,7 +341,7 @@
   .trust-stat:hover {
     transform: translateY(-2px);
     border-color: color-mix(in oklab, var(--primary) 38%, var(--card));
-    box-shadow: 0 9px 22px -10px oklch(0.32 0.035 8 / 0.23);
+    box-shadow: 0 9px 22px -10px color-mix(in srgb, var(--primary) 23%, transparent);
   }
 }
 
@@ -369,6 +368,13 @@
 
 @media (prefers-reduced-motion: reduce) {
   html { scroll-behavior: auto; }
+}
+
+.brand-logo {
+  aspect-ratio: 203 / 89;
+  mask-size: contain;
+  mask-position: center;
+  mask-repeat: no-repeat;
 }
 
 .hero-title {

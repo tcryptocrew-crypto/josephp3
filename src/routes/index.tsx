@@ -8,7 +8,7 @@ import vsl from "@/assets/vsl-stock.jpg";
 import logoDarkAsset from "@/assets/joseph-aziz-logo-dark.png";
 import logoLightAsset from "@/assets/joseph-aziz-logo-light.png";
 import josephAsset from "@/assets/joseph-aziz-keys.png";
-import formHouse from "@/assets/form-house-stock.jpg";
+import formHouse from "@/assets/form-house-client.jpg";
 
 const TITLE = "Stay-or-Move Evaluation | Joseph Aziz Real Estate, Bergen County";
 const DESC =
@@ -44,6 +44,17 @@ function CTA() {
 }
 
 function Logo({ compact, light }: { compact?: boolean; light?: boolean }) {
+  if (!light) {
+    return (
+      <span
+        role="img"
+        aria-label="Joseph Aziz Real Estate"
+        className={`${compact ? "h-8" : "mx-auto h-5 sm:h-7"} brand-logo block bg-primary`}
+        style={{ maskImage: `url(${logoDarkAsset})` }}
+      />
+    );
+  }
+
   return (
     <img
       src={light ? logoLightAsset : logoDarkAsset}
@@ -180,10 +191,10 @@ function Index() {
         <div className="pointer-events-none absolute inset-y-0 left-0 hidden w-1/2 overflow-hidden lg:block">
           <img
             src={formHouse}
-            alt="Luxury modern custom home at dusk"
+            alt="White two-story home with illuminated windows at dusk"
             loading="lazy"
-            width={1200}
-            height={1800}
+            width={1440}
+            height={1440}
             className="h-full w-full object-cover object-center opacity-65"
           />
           {/* Smooth Right Fade */}
@@ -219,7 +230,7 @@ function Index() {
       </section>
 
       {/* FOOTER */}
-      <footer className="relative border-t border-foreground bg-foreground px-5 py-12 text-background">
+      <footer className="relative border-t border-primary bg-primary px-5 py-12 text-background">
         <div className="mx-auto flex max-w-6xl flex-col items-center justify-between gap-6 text-base md:flex-row">
           <div className="flex flex-col items-center md:items-start gap-1">
             <Logo compact light />
