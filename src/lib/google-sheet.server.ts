@@ -7,8 +7,9 @@ export async function saveToGoogleSheet(
   lead: EvaluationLead,
   source = "VSL 1",
 ): Promise<{ saved: boolean; error?: string }> {
-  const envUrl =
-    process.env["GOOGLE_SHEET_WEBHOOK_URL"] ?? process.env["VITE_GOOGLE_SHEET_WEBHOOK_URL"];
+  const serverUrl = process.env["GOOGLE_SHEET_WEBHOOK_URL"];
+  const envUrl = serverUrl ?? process.env["VITE_GOOGLE_SHEET_WEBHOOK_URL"];
+  const webhookSecret = process.env["GOOGLE_SHEET_WEBHOOK_SECRET"]?.trim();
   const webhookUrl = envUrl !== undefined ? envUrl.trim() : DEFAULT_WEBHOOK_URL;
 
   if (!webhookUrl) {
@@ -31,6 +32,10 @@ export async function saveToGoogleSheet(
   });
 
   const isSheetDb = webhookUrl.includes("sheetdb.io");
+  if (webhookSecret && (!serverUrl?.trim() || isSheetDb)) {
+    console.error("[GoogleSheet] A server-side Apps Script URL is required with a webhook secret.");
+    return { saved: false, error: "Invalid GOOGLE_SHEET_WEBHOOK_URL" };
+  }
 
   // Format payload according to endpoint type (SheetDB array vs Apps Script object)
   const body = isSheetDb
@@ -55,6 +60,7 @@ export async function saveToGoogleSheet(
         propertyAddress: lead.address,
         whatTheyAreLookingFor: lead.needs || "",
         landingPageSource: source,
+        ...(webhookSecret ? { webhookSecret } : {}),
       });
 
   try {
@@ -72,6 +78,14 @@ export async function saveToGoogleSheet(
     if (!response.ok) {
       console.error(`[GoogleSheet] Request failed with status ${response.status}`);
       return { saved: false, error: `HTTP ${response.status}` };
+    }
+
+    if (webhookSecret) {
+      const result: { saved?: boolean } | null = await response.json();
+      if (result?.saved !== true) {
+        console.error("[GoogleSheet] The webhook did not confirm the lead was written.");
+        return { saved: false, error: "Google Sheet append was not confirmed" };
+      }
     }
 
     return { saved: true };
