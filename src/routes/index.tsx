@@ -7,6 +7,7 @@ import { WistiaVideo } from "@/components/landing/WistiaVideo";
 import { StayOrMoveSection } from "@/components/landing/StayOrMoveSection";
 import logoDarkAsset from "@/assets/joseph-aziz-logo-dark.png";
 import logoLightAsset from "@/assets/joseph-aziz-logo-light.png";
+import prestigeLogo from "@/assets/prestige-property-group-logo.png";
 import josephAsset from "@/assets/joseph-aziz-keys.png";
 import formHouse from "@/assets/form-house-client.jpg";
 
@@ -31,6 +32,7 @@ export const Route = createFileRoute("/")({
         async: true,
         type: "module",
       })),
+      { src: "https://link.msgsndr.com/js/form_embed.js", async: true },
     ],
   }),
   component: Index,
@@ -124,7 +126,7 @@ function Index() {
           </p>
           {[
             { Icon: Trophy, value: "#28", label: "In New Jersey" },
-            { Icon: Layers, value: "$400M+", label: "Total Sales", featured: true },
+            { Icon: Layers, value: "$600M+", label: "Total Sales", featured: true },
             { Icon: Home, value: "Built", label: "His Own Home" },
           ].map(({ Icon, value, label, featured }) => (
             <div key={label} className={featured ? "trust-stat trust-stat-featured" : "trust-stat"}>
@@ -236,17 +238,25 @@ function Index() {
       {/* FOOTER */}
       <footer className="relative border-t border-primary bg-primary px-5 py-12 text-background">
         <div className="mx-auto flex max-w-6xl flex-col items-center justify-between gap-6 text-base md:flex-row">
-          <div className="flex flex-col items-center md:items-start gap-1">
-            <Logo compact light />
-            <span className="text-xs text-secondary/85">Prestige Property Group Montclair</span>
+          <div className="flex flex-col items-center md:items-start gap-2">
+            <img
+              src={prestigeLogo}
+              alt="Prestige Property Group Montclair"
+              className="h-10 sm:h-12 w-auto object-contain"
+            />
+            <img
+              src={logoLightAsset}
+              alt="Joseph Aziz Real Estate"
+              className="h-5 sm:h-5.5 w-auto object-contain opacity-90"
+            />
           </div>
           <div className="flex items-start gap-2">
             <MapPin className="mt-1 h-5 w-5 text-accent shrink-0" />
             <span>151 Forest St, Unit H<br />Montclair, NJ 07042</span>
           </div>
-          <a href="tel:2017085067" className="flex items-center gap-2 hover:text-white hover:underline transition-colors text-white">
+          <a href="tel:9738607595" className="flex items-center gap-2 hover:text-white hover:underline transition-colors text-white">
             <Phone className="h-5 w-5 text-accent shrink-0" />
-            201-708-5067
+            973-860-7595
           </a>
           <div className="flex gap-2 text-sm text-secondary">
             <a href="#" className="hover:text-white hover:underline transition-colors">Privacy Policy</a>

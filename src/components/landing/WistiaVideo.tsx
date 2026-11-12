@@ -74,7 +74,7 @@ export function WistiaVideo({ mediaId, aspect, label, className = "", compactPla
         ref: playerRef,
         "media-id": mediaId,
         aspect,
-        "player-color": "#191919",
+        "player-color": "#323644",
         autoplay: "false",
         "fullscreen-control": "false",
         "play-bar-control": "true",
