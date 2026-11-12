@@ -8,7 +8,7 @@ import { StayOrMoveSection } from "@/components/landing/StayOrMoveSection";
 import logoDarkAsset from "@/assets/joseph-aziz-logo-dark.png";
 import logoLightAsset from "@/assets/joseph-aziz-logo-light.png";
 import prestigeLogo from "@/assets/prestige-property-group-logo.png";
-import josephAsset from "@/assets/joseph-aziz-keys.png";
+import josephAsset from "@/assets/joseph-aziz-keys.jpg";
 import formHouse from "@/assets/form-house-client.jpg";
 
 const TITLE = "Stay-or-Move Evaluation | Joseph Aziz Real Estate, Bergen County";
@@ -165,7 +165,7 @@ function Index() {
             <div className="relative mx-auto w-full max-w-sm">
               <div className="absolute -inset-8 rounded-full bg-[radial-gradient(circle,color-mix(in_oklab,var(--primary)_20%,transparent),transparent_70%)]" />
               <div className="absolute -bottom-3 -right-3 h-full w-full rounded-2xl border border-primary/40" />
-              <img src={josephAsset} alt="Joseph Aziz handing house keys to new homeowners" loading="lazy" width={315} height={350} className="relative aspect-[9/10] w-full rounded-2xl object-cover" />
+              <img src={josephAsset} alt="Joseph Aziz handing house keys to new homeowners" loading="lazy" width={921} height={1024} className="relative aspect-[9/10] w-full rounded-2xl object-cover" />
             </div>
             <div className="landing-copy space-y-4 text-center text-[17px] leading-[1.75] text-foreground/90 sm:space-y-6 sm:text-lg md:border-l md:border-primary/40 md:pl-12 md:text-left">
               <p>I’m Joseph Aziz. I’ve built <span className="text-primary">my own custom home</span>, helped homeowners sell and move into new construction, and worked directly with builders to negotiate purchase prices, finishes, and extras.</p>
