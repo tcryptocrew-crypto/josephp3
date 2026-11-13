@@ -8,7 +8,7 @@ import { StayOrMoveSection } from "@/components/landing/StayOrMoveSection";
 import logoDarkAsset from "@/assets/joseph-aziz-logo-dark.png";
 import logoLightAsset from "@/assets/joseph-aziz-logo-light.png";
 import prestigeLogo from "@/assets/prestige-property-group-logo.png";
-import josephAsset from "@/assets/joseph-aziz-clients.webp";
+import josephAsset from "@/assets/joseph-aziz-clients.jpg";
 import formHouse from "@/assets/form-house-client.jpg";
 
 const TITLE = "Stay-or-Move Evaluation | Joseph Aziz Real Estate, Bergen County";
