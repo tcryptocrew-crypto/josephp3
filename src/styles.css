@@ -399,21 +399,29 @@
   inset: 0;
   display: grid;
   place-items: center;
-  width: 52px;
-  height: 52px;
+  width: 46px;
+  height: 46px;
   margin: auto;
   padding: 0;
-  border: 1px solid rgb(255 255 255 / 45%);
+  border: 1.5px solid rgb(255 255 255 / 65%);
   border-radius: 50%;
-  background: rgb(50 54 68 / 80%);
+  background: rgb(50 54 68 / 85%);
+  box-shadow: 0 4px 18px rgba(0, 0, 0, 0.45);
+  backdrop-filter: blur(8px);
   color: white;
   cursor: pointer;
+  transition: transform 180ms ease, background-color 180ms ease;
+}
+
+.video-resume:hover {
+  transform: scale(1.08);
+  background: rgb(50 54 68 / 95%);
 }
 
 .video-resume svg {
-  width: 22px;
-  height: 22px;
-  margin-left: 3px;
+  width: 20px;
+  height: 20px;
+  margin-left: 2px;
   fill: currentColor;
 }
 

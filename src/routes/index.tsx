@@ -106,6 +106,7 @@ function Index() {
             mediaId="m0m8e6gfb6"
             aspect="1.7777777777777777"
             label="Joseph Aziz Stay-or-Move evaluation video"
+            overlayText="Watch This Video First · 2-Min Breakdown"
             className="media-frame mx-auto mt-6 max-w-3xl overflow-hidden rounded-2xl bg-black shadow-2xl sm:mt-8"
           />
           <p className="landing-copy mx-auto mt-5 max-w-[46ch] text-lg text-foreground sm:mt-6 sm:max-w-3xl sm:text-xl font-normal leading-relaxed">
