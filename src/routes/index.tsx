@@ -53,13 +53,13 @@ function CTA() {
   );
 }
 
-function Logo({ compact, light }: { compact?: boolean; light?: boolean }) {
+function Logo({ compact, light, className = "" }: { compact?: boolean; light?: boolean; className?: string }) {
   if (!light) {
     return (
       <span
         role="img"
         aria-label="Joseph Aziz Real Estate"
-        className={`${compact ? "h-8" : "mx-auto h-5 sm:h-7"} brand-logo block bg-primary`}
+        className={`${compact ? "h-7 sm:h-8" : "h-6 sm:h-7"} brand-logo block bg-primary ${className}`}
         style={{ maskImage: `url(${logoDarkAsset})` }}
       />
     );
@@ -69,7 +69,7 @@ function Logo({ compact, light }: { compact?: boolean; light?: boolean }) {
     <img
       src={light ? logoLightAsset : logoDarkAsset}
       alt="Joseph Aziz Real Estate"
-      className={`${compact ? "h-8" : "mx-auto h-5 sm:h-7"} w-auto`}
+      className={`${compact ? "h-7 sm:h-8" : "h-6 sm:h-7"} w-auto ${className}`}
     />
   );
 }
@@ -88,11 +88,26 @@ function Index() {
   return (
     <main className="relative overflow-x-hidden text-foreground">
       <div className="relative z-10">
+      {/* NAVBAR */}
+      <header className="sticky top-0 z-50 w-full border-b border-black/[0.06] bg-[#FFFBF7]/85 backdrop-blur-md transition-all">
+        <div className="mx-auto flex h-16 sm:h-20 max-w-6xl items-center justify-between px-5">
+          <a href="#" aria-label="Joseph Aziz Real Estate" className="flex items-center">
+            <Logo compact />
+          </a>
+          <a
+            href="#evaluation"
+            className="evaluation-button !min-h-0 py-2 sm:py-2.5 px-3.5 sm:px-5 text-xs sm:text-sm font-semibold shrink-0"
+          >
+            <span>Request Evaluation</span>
+            <ChevronRight className="size-3.5 max-[370px]:hidden" aria-hidden="true" />
+          </a>
+        </div>
+      </header>
+
       {/* HERO */}
       <section className="relative bg-transparent">
-        <div className="relative mx-auto max-w-5xl px-5 pb-10 pt-4 text-center fade-up sm:pb-12 sm:pt-6">
-          <Logo />
-          <div className="mt-3 inline-block rounded-full border border-border bg-white/80 px-5 py-2 text-xs font-semibold uppercase tracking-wider backdrop-blur-sm sm:mt-4 sm:text-sm shadow-xs">
+        <div className="relative mx-auto max-w-5xl px-5 pb-10 pt-6 text-center fade-up sm:pb-12 sm:pt-8">
+          <div className="inline-block rounded-full border border-border bg-white/80 px-5 py-2 text-xs font-semibold uppercase tracking-wider backdrop-blur-sm sm:text-sm shadow-xs">
             <span className="text-primary font-bold">Bergen County homeowners</span>
           </div>
           <h1 className="hero-title mx-auto mt-3 max-w-4xl text-foreground sm:mt-4">
