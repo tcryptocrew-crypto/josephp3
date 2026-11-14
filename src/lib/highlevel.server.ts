@@ -63,11 +63,11 @@ export async function saveEvaluationLead(
           phone: lead.phone,
           address: lead.address,
           needs: lead.needs || "",
-          source: "Joseph | Free Home Evaluation",
-          landingPageSource: lead.landingPageSource || "VSL 1",
+          source: "Landing Page 2",
+          landingPageSource: lead.landingPageSource || "Landing Page 2",
           locationId,
           formId,
-          tags: ["website-lead", "stay-or-move-evaluation", "vsl-1", formId],
+          tags: ["website-lead", "stay-or-move-evaluation", "landing-page-2", formId],
           submittedAt: new Date().toISOString(),
         }),
         signal: AbortSignal.timeout(6_000),
@@ -93,11 +93,11 @@ export async function saveEvaluationLead(
       email: lead.email,
       phone: lead.phone,
       address1: lead.address,
-      source: "Joseph | Free Home Evaluation",
+      source: "Landing Page 2",
       tags: [
         "website-lead",
         "stay-or-move-evaluation",
-        "vsl-1",
+        "landing-page-2",
         formId,
       ],
       customFields,
@@ -114,27 +114,34 @@ export async function saveEvaluationLead(
       console.error("[HighLevel] Contact save response did not contain a contact ID.");
       return { saved: false };
     }
+
     contactId = result.contact.id;
-  } catch (err) {
-    console.error("[HighLevel] Contact save request could not be confirmed:", err);
+  } catch (upsertErr) {
+    console.error("[HighLevel] Network error while upserting contact:", upsertErr);
     return { saved: false };
   }
 
-  // 3. Optional Direct Workflow Enrollment (if workflowId is provided)
+  // 3. Optional Workflow Enrollment
   if (workflowId) {
     try {
       const response = await postToHighLevel(
-        `/contacts/${encodeURIComponent(contactId)}/workflow/${encodeURIComponent(workflowId)}`,
+        `/contacts/${encodeURIComponent(contactId)}/workflows/${encodeURIComponent(workflowId)}`,
         token,
         {},
       );
+
       if (!response.ok) {
-        console.warn(
-          `[HighLevel] Saved contact ${contactId}; workflow enrollment returned HTTP ${response.status}.`,
+        const errBody = await response.text();
+        console.error(
+          `[HighLevel] Saved contact ${contactId}; workflow enrollment returned HTTP ${response.status}:`,
+          errBody,
         );
       }
-    } catch (wfErr) {
-      console.warn(`[HighLevel] Saved contact ${contactId}; workflow enrollment request failed:`, wfErr);
+    } catch (workflowErr) {
+      console.error(
+        `[HighLevel] Saved contact ${contactId}; network error enrolling in workflow:`,
+        workflowErr,
+      );
     }
   }
 

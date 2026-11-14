@@ -32,7 +32,10 @@ describe("GoHighLevel evaluation submission", () => {
       .mockResolvedValueOnce(Response.json({ contact: { id: "saved-contact" } }))
       .mockResolvedValueOnce(Response.json({ succeeded: true }));
 
-    await expect(saveEvaluationLead(lead)).resolves.toEqual({ saved: true });
+    await expect(saveEvaluationLead(lead)).resolves.toEqual({
+      saved: true,
+      contactId: "saved-contact",
+    });
     expect(request).toHaveBeenNthCalledWith(
       1,
       "https://services.leadconnectorhq.com/contacts/upsert",
@@ -43,6 +46,7 @@ describe("GoHighLevel evaluation submission", () => {
       name: lead.name,
       email: lead.email,
       phone: lead.phone,
+      source: "Landing Page 2",
       customFields: [
         { id: "arNAYodrZv4Cv08XWfmV", fieldValue: lead.address },
         { id: "0fOh5jbfik5iWW97Qmvs", fieldValue: lead.needs },
@@ -50,13 +54,13 @@ describe("GoHighLevel evaluation submission", () => {
     });
     expect(request).toHaveBeenNthCalledWith(
       2,
-      "https://services.leadconnectorhq.com/contacts/saved-contact/workflow/test-workflow",
+      "https://services.leadconnectorhq.com/contacts/saved-contact/workflows/test-workflow",
       expect.objectContaining({ method: "POST" }),
     );
   });
 
   it("reports an unconfigured integration instead of simulating success", async () => {
-    vi.stubEnv("GHL_WORKFLOW_ID", "");
+    vi.stubEnv("GHL_PRIVATE_INTEGRATION_TOKEN", "");
     await expect(saveEvaluationLead(lead)).resolves.toEqual({ saved: false });
     expect(request).not.toHaveBeenCalled();
   });
@@ -72,7 +76,13 @@ describe("GoHighLevel evaluation submission", () => {
       .mockResolvedValueOnce(Response.json({ contact: { id: "saved-contact" } }))
       .mockResolvedValueOnce(new Response(null, { status: 503 }));
 
-    await expect(saveEvaluationLead(lead)).resolves.toEqual({ saved: true });
-    expect(console.error).toHaveBeenCalledWith(expect.stringContaining("saved-contact"));
+    await expect(saveEvaluationLead(lead)).resolves.toEqual({
+      saved: true,
+      contactId: "saved-contact",
+    });
+    expect(console.error).toHaveBeenCalledWith(
+      expect.stringContaining("workflow enrollment returned HTTP 503"),
+      expect.anything(),
+    );
   });
 });

@@ -23,7 +23,8 @@ export const submitLeadToGoogleSheet = createServerFn({ method: "POST" })
       phoneNumber: data.phone,
       propertyAddress: data.address,
       whatTheyAreLookingFor: data.needs || "",
-      landingPageSource: "VSL 2",
+      source: "Landing Page 2",
+      landingPageSource: "Landing Page 2",
     };
 
     const res = await fetch(webhookUrl, {

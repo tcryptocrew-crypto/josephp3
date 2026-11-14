@@ -5,7 +5,7 @@ const DEFAULT_WEBHOOK_URL =
 
 export async function saveToGoogleSheet(
   lead: EvaluationLead,
-  source = "VSL 1",
+  source = "Landing Page 2",
 ): Promise<{ saved: boolean; error?: string }> {
   const serverUrl = process.env["GOOGLE_SHEET_WEBHOOK_URL"];
   const envUrl = serverUrl ?? process.env["VITE_GOOGLE_SHEET_WEBHOOK_URL"];
@@ -71,13 +71,16 @@ export async function saveToGoogleSheet(
         "Content-Type": "application/json",
       },
       body,
-      redirect: "follow",
-      signal: AbortSignal.timeout(10_000),
+      signal: AbortSignal.timeout(8_000),
     });
 
     if (!response.ok) {
-      console.error(`[GoogleSheet] Request failed with status ${response.status}`);
-      return { saved: false, error: `HTTP ${response.status}` };
+      const errText = await response.text();
+      console.error(
+        `[GoogleSheet] Submission failed with status ${response.status}:`,
+        errText,
+      );
+      return { saved: false, error: `HTTP ${response.status}: ${errText}` };
     }
 
     if (webhookSecret) {
@@ -90,7 +93,10 @@ export async function saveToGoogleSheet(
 
     return { saved: true };
   } catch (err) {
-    console.error("[GoogleSheet] Error posting to Google Sheet:", err);
-    return { saved: false, error: String(err) };
+    console.error("[GoogleSheet] Network error while appending lead:", err);
+    return {
+      saved: false,
+      error: err instanceof Error ? err.message : "Network error",
+    };
   }
 }
