@@ -29,7 +29,7 @@ afterEach(() => {
 });
 
 describe("Google Sheet evaluation lead submission", () => {
-  it("formats payload correctly for SheetDB with exact column names and default Landing Page 2 source", async () => {
+  it("formats payload correctly for SheetDB with exact column names and default Landing Page 1 source", async () => {
     request.mockResolvedValueOnce(Response.json({ created: 1 }, { status: 201 }));
 
     const res = await saveToGoogleSheet(lead);
@@ -55,7 +55,7 @@ describe("Google Sheet evaluation lead submission", () => {
       "Phone Number": "+12015550199",
       "Property Address": "123 Main St, Alpine, NJ",
       "What They're Looking For": "Addition of 2 master bedrooms",
-      "Landing Page Source": "Landing Page 2",
+      "Landing Page Source": "Landing Page 1",
     });
     expect(sentPayload.data[0]["Date Submitted"]).toBeDefined();
   });

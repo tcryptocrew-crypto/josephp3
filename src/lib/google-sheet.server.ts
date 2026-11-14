@@ -5,7 +5,7 @@ const DEFAULT_WEBHOOK_URL =
 
 export async function saveToGoogleSheet(
   lead: EvaluationLead,
-  source = "Landing Page 2",
+  source = "Landing Page 1",
 ): Promise<{ saved: boolean; error?: string }> {
   const serverUrl = process.env["GOOGLE_SHEET_WEBHOOK_URL"];
   const envUrl = serverUrl ?? process.env["VITE_GOOGLE_SHEET_WEBHOOK_URL"];

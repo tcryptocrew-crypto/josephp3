@@ -46,7 +46,7 @@ describe("GoHighLevel evaluation submission", () => {
       name: lead.name,
       email: lead.email,
       phone: lead.phone,
-      source: "Landing Page 2",
+      source: "Landing Page 1",
       customFields: [
         { id: "arNAYodrZv4Cv08XWfmV", fieldValue: lead.address },
         { id: "0fOh5jbfik5iWW97Qmvs", fieldValue: lead.needs },

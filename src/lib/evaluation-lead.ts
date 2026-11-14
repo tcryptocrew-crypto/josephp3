@@ -17,10 +17,10 @@ export const submitEvaluationLead = createServerFn({ method: "POST" })
   .handler(async ({ data }) => {
     const results: { ghlSaved?: boolean; sheetSaved?: boolean; contactId?: string } = {};
 
-    // 1. Save to Google Sheet (Source: Landing Page 2)
+    // 1. Save to Google Sheet (Source: Landing Page 1)
     try {
       const { saveToGoogleSheet } = await import("./google-sheet.server");
-      const sheetRes = await saveToGoogleSheet(data, data.landingPageSource || "Landing Page 2");
+      const sheetRes = await saveToGoogleSheet(data, data.landingPageSource || "Landing Page 1");
       results.sheetSaved = sheetRes.saved;
     } catch (err) {
       console.error("[Submit] Failed to save to Google Sheet:", err);
