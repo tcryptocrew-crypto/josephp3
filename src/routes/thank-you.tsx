@@ -1,6 +1,6 @@
 import { createFileRoute } from "@tanstack/react-router";
 import { useEffect } from "react";
-import { CheckCircle2, ArrowLeft, Phone, MapPin } from "lucide-react";
+import { Check, ArrowLeft, Phone, MapPin } from "lucide-react";
 import logoDarkAsset from "@/assets/joseph-aziz-logo-dark.png";
 import logoLightAsset from "@/assets/joseph-aziz-logo-light.png";
 import prestigeLogo from "@/assets/prestige-property-group-logo.png";
@@ -8,7 +8,7 @@ import prestigeLogo from "@/assets/prestige-property-group-logo.png";
 export const Route = createFileRoute("/thank-you")({
   head: () => ({
     meta: [
-      { title: "Thank You | Joseph Aziz Real Estate" },
+      { title: "Request Received | Joseph Aziz Real Estate" },
       { name: "robots", content: "noindex, nofollow" },
     ],
   }),
@@ -63,79 +63,100 @@ export function ThankYouPage() {
       </header>
 
       {/* MAIN CONTENT */}
-      <div className="relative mx-auto max-w-3xl px-5 py-12 sm:py-20 text-center flex-1 flex flex-col justify-center items-center">
-        {/* Success Icon */}
-        <div className="mx-auto mb-6 flex h-16 w-16 sm:h-20 sm:w-20 items-center justify-center rounded-full bg-primary/10 text-primary">
-          <CheckCircle2 className="h-10 w-10 sm:h-12 sm:w-12 text-primary" />
-        </div>
-
-        {/* Section Eyebrow */}
-        <div className="flex items-center justify-center gap-3 mb-4">
-          <span className="section-rule w-8 sm:w-12" />
-          <span className="text-xs sm:text-sm font-semibold uppercase tracking-[0.25em] text-primary">
-            Request Confirmed
-          </span>
-          <span className="section-rule w-8 sm:w-12" />
-        </div>
-
-        {/* Title */}
-        <h1 className="font-serif text-3xl sm:text-4xl lg:text-5xl font-normal leading-[1.2] text-foreground">
-          Thank You! We’ve Received Your <span className="text-primary italic">Evaluation Request</span>.
-        </h1>
-
-        <p className="mt-4 max-w-xl text-base sm:text-lg text-muted-foreground leading-relaxed">
-          Before taking on costly renovations or listing your home, our tailored Stay-or-Move evaluation will give you complete clarity on your numbers.
+      <div className="relative mx-auto max-w-2xl px-5 py-12 sm:py-20 text-center flex-1 flex flex-col justify-center items-center">
+        {/* Brand Eyebrow */}
+        <p className="text-xs sm:text-sm font-semibold uppercase tracking-[0.25em] text-primary/80 mb-4">
+          JOSEPH AZIZ · REAL ESTATE
         </p>
 
-        {/* Next Steps Box */}
+        {/* Request Received Badge */}
+        <div className="inline-flex items-center gap-2 rounded-full bg-emerald-50 border border-emerald-200/80 px-4 py-1.5 text-xs sm:text-sm font-semibold uppercase tracking-wider text-emerald-800 mb-6">
+          <Check className="h-4 w-4 stroke-[2.5]" />
+          <span>REQUEST RECEIVED</span>
+        </div>
+
+        {/* Main Headline */}
+        <h1 className="font-serif text-3xl sm:text-4xl lg:text-5xl font-normal leading-[1.2] text-foreground">
+          Your next move starts here.
+        </h1>
+
+        {/* Subtitle */}
+        <p className="mt-4 max-w-lg text-base sm:text-lg text-muted-foreground leading-relaxed">
+          Joseph’s team will contact you to arrange your free home evaluation.
+        </p>
+
+        {/* What We'll Talk Through Section */}
         <div className="mt-10 w-full text-left rounded-2xl border border-black/[0.08] bg-card p-6 sm:p-8 shadow-sm">
-          <h2 className="text-lg font-semibold text-foreground mb-4">What Happens Next:</h2>
-          <div className="space-y-4">
+          <div className="flex items-center gap-3 mb-6">
+            <span className="section-rule w-6 sm:w-10" />
+            <span className="text-xs sm:text-sm font-semibold uppercase tracking-[0.2em] text-primary">
+              WHAT WE’LL TALK THROUGH
+            </span>
+            <span className="section-rule w-6 sm:w-10" />
+          </div>
+
+          <div className="space-y-6">
+            {/* Item 01 */}
             <div className="flex items-start gap-4">
-              <div className="flex h-9 w-9 shrink-0 items-center justify-center rounded-lg bg-primary/10 text-primary font-semibold text-sm">
-                1
-              </div>
+              <span className="text-sm font-bold tracking-wider text-primary shrink-0 pt-0.5">
+                01
+              </span>
               <div>
-                <h3 className="text-sm font-semibold text-foreground">Property & Neighborhood Review</h3>
-                <p className="text-xs sm:text-sm text-muted-foreground mt-0.5">
-                  Joseph Aziz and our team will analyze your property specifications alongside recent Bergen County comps and renovation yields.
+                <h2 className="text-base font-semibold text-foreground">
+                  Your options.
+                </h2>
+                <p className="text-sm text-muted-foreground mt-1 leading-relaxed">
+                  Whether renovating, adding space, or buying a different home makes the most sense for you.
                 </p>
               </div>
             </div>
 
+            {/* Item 02 */}
             <div className="flex items-start gap-4">
-              <div className="flex h-9 w-9 shrink-0 items-center justify-center rounded-lg bg-primary/10 text-primary font-semibold text-sm">
-                2
-              </div>
+              <span className="text-sm font-bold tracking-wider text-primary shrink-0 pt-0.5">
+                02
+              </span>
               <div>
-                <h3 className="text-sm font-semibold text-foreground">Stay vs. Move Analysis</h3>
-                <p className="text-xs sm:text-sm text-muted-foreground mt-0.5">
-                  We prepare a comparison of what your home could sell for today vs. its post-renovation value vs. what you could purchase instead.
-                </p>
-              </div>
-            </div>
-
-            <div className="flex items-start gap-4">
-              <div className="flex h-9 w-9 shrink-0 items-center justify-center rounded-lg bg-primary/10 text-primary font-semibold text-sm">
-                3
-              </div>
-              <div>
-                <h3 className="text-sm font-semibold text-foreground">Direct Conversation</h3>
-                <p className="text-xs sm:text-sm text-muted-foreground mt-0.5">
-                  We'll contact you within 24 hours to review the breakdown together and answer any questions.
+                <h2 className="text-base font-semibold text-foreground">
+                  Your numbers and next steps.
+                </h2>
+                <p className="text-sm text-muted-foreground mt-1 leading-relaxed">
+                  What your home could be worth, the costs to compare, and how the timing could work around your plans.
                 </p>
               </div>
             </div>
           </div>
         </div>
 
-        {/* Homepage Back Button */}
-        <div className="mt-8 flex flex-col sm:flex-row items-center gap-4">
+        {/* Direct Call Box */}
+        <div className="mt-8 w-full rounded-2xl border border-primary/20 bg-primary/[0.03] p-6 text-center">
+          <p className="text-sm sm:text-base font-medium text-foreground">
+            Want to speak with Joseph directly?
+          </p>
+          <p className="text-xs uppercase tracking-wider text-muted-foreground mt-1 mb-3">
+            Call him now
+          </p>
+          <a
+            href="tel:9738607595"
+            className="evaluation-button inline-flex items-center justify-center gap-2 py-3 px-6 text-base sm:text-lg font-bold"
+          >
+            <Phone className="size-4" />
+            <span>973-860-7595</span>
+          </a>
+        </div>
+
+        {/* Free valuation note */}
+        <p className="mt-5 text-xs sm:text-sm text-muted-foreground/90 font-medium">
+          Free valuation. No obligation to list.
+        </p>
+
+        {/* Return to Homepage Link */}
+        <div className="mt-6">
           <a
             href="/"
-            className="evaluation-button inline-flex items-center justify-center gap-2 py-3 px-6 text-sm sm:text-base font-semibold"
+            className="inline-flex items-center gap-2 text-xs sm:text-sm font-semibold text-primary hover:opacity-80 transition-opacity"
           >
-            <ArrowLeft className="size-4" />
+            <ArrowLeft className="size-3.5" />
             <span>Return to Homepage</span>
           </a>
         </div>
